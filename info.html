@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="Expires" CONTENT="-1">
+    <title>Monitoring Info</title>
+    <script type="text/javascript">
+	    var counter = 0;
+        function fetchContent() {
+	        counter++;
+            var url = "http://u5h8n5/IISSamples/Default/info.txt" + "?v=" + counter;
+     
+            var xhttp;
+     
+            if (window.XMLHttpRequest) {
+                xhttp = new XMLHttpRequest();
+            } else {
+                xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+	  
+            xhttp.open("GET", url, false);
+            xhttp.send(null);
+            var response = xhttp.responseText;
+            var tokens = response.split(",")
+            document.getElementById("field_1").innerHTML = tokens[0];
+            document.getElementById("field_2").innerHTML = tokens[1];
+            document.getElementById("field_3").innerHTML = tokens[2];
+            document.getElementById("field_4").innerHTML = tokens[3];
+            document.getElementById("field_5").innerHTML = tokens[4];
+            document.getElementById("field_6").innerHTML = tokens[5];
+            document.getElementById("field_7").innerHTML = tokens[6];
+            document.getElementById("field_8").innerHTML = tokens[7];
+            document.getElementById("field_9").innerHTML = tokens[8];
+            document.getElementById("fetches").innerHTML = counter;
+  	    }
+
+	    function startAutoUpdate() {
+            fetchContent();
+            setInterval(fetchContent, 1000);
+        }
+        
+        window.onload = startAutoUpdate;
+    </script>
+</head>
+<body bgcolor = "#007DF0" text = "#FFFFFF">
+    Requests:&nbsp;<span id = "fetches"></span><br>
+    CPUs&nbsp;Number:&nbsp;<span id = "field_1"></span><br>
+    Page&nbsp;Size:&nbsp;<span id = "field_2"></span><br>
+    CPU&nbsp;Type:&nbsp;<span id = "field_3"></span><br>
+    Memory:&nbsp;<span id = "field_4"></span>&nbsp;/&nbsp;<span id = "field_5"></span>&nbsp;KB<br>
+    Swap:&nbsp;<span id = "field_6"></span>&nbsp;/&nbsp;<span id = "field_7"></span>&nbsp;KB<br>
+    HDD:&nbsp;<span id = "field_8"></span>&nbsp;/&nbsp;<span id = "field_9"></span>&nbsp;GB<br>
+</body>
+</html>
