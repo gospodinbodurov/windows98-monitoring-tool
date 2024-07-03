@@ -22,9 +22,9 @@ void main() {
 		int totalswap = memory.dwTotalPageFile / 1024;
 		int availswap = memory.dwAvailPageFile / 1024;
 
-		ofs << availrealmem << ",";
+		ofs << (totalrealmem - availrealmem) << ",";
 		ofs << totalrealmem << ",";
-		ofs << availswap << ",";
+		ofs << (totalswap - availswap) << ",";
 		ofs << totalswap << ",";
 
 		BOOLEAN bSuccess;
